@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USS Enterprise - Consola Táctica de Ingeniería</title>
+    <style>
+        /* Estilos LCARS Profesionales y Corporativos */
+        body {
+            background-color: #000000;
+            color: #ccddff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px 40px;
+        }
+        .lcars-wrapper {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .lcars-sidebar {
+            width: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .lcars-block-top {
+            background-color: #ff9900;
+            height: 100px;
+            border-radius: 50px 0 0 0;
+        }
+        .lcars-block-mid {
+            background-color: #cc6699;
+            height: 400px;
+        }
+        .lcars-block-bot {
+            background-color: #3366ff;
+            flex-grow: 1;
+            border-radius: 0 0 0 50px;
+            min-height: 800px;
+        }
+        .lcars-content {
+            flex-grow: 1;
+            padding-top: 20px;
+        }
+        .lcars-header {
+            border-bottom: 5px solid #ff9900;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h1 { color: #ff9900; font-size: 32px; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        h2 { color: #cc6699; font-size: 20px; margin: 5px 0 0 0; text-transform: uppercase; }
+        h3 { color: #3366ff; border-bottom: 1px solid #3366ff; padding-bottom: 5px; margin-top: 30px; text-transform: uppercase; }
+        
+        .panel-datos {
+            background-color: #111111;
+            padding: 20px;
+            border-left: 5px solid #ff9900;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+        .oficiales-lista { list-style-type: square; color: #ff9900; padding-left: 20px; }
+        .oficiales-lista span { color: #ccddff; }
+        .destacado { color: #ff9900; font-weight: bold; }
+        .ok { color: #00ff00; font-weight: bold; }
+
+        /* Estilos específicos para los pasos del informe */
+        .informe-seccion {
+            margin-top: 40px;
+        }
+        .paso-caja {
+            background-color: #0b0f19;
+            border: 1px solid #223355;
+            border-left: 6px solid #cc6699;
+            border-radius: 0 12px 12px 0;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .paso-caja h4 {
+            margin: 0 0 10px 0;
+            color: #ff9900;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        .paso-caja p {
+            line-height: 1.6;
+            color: #ccddff;
+            margin-bottom: 20px;
+        }
+        .paso-imagen {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #3366ff;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lcars-wrapper">
+        <div class="lcars-sidebar">
+            <div class="lcars-block-top"></div>
+            <div class="lcars-block-mid"></div>
+            <div class="lcars-block-bot"></div>
+        </div>
+
+        <div class="lcars-content">
+            <div class="lcars-header">
+                <h1>Comando de la Flota Estelar</h1>
+                <h2>Consola Táctica de Ingeniería y Diagnóstico</h2>
+            </div>
+
+            <div class="panel-datos">
+                <h3>[ Identificación de la Misión ]</h3>
+                <p><span class="destacado">Base de Operaciones:</span> Universidad de Palermo (UP)</p>
+                <p><span class="destacado">División Académica:</span> Ingeniería en Inteligencia Artificial</p>
+                <p><span class="destacado">Almirante Supervisor:</span> Matías Chiesa</p>
+                <p><span class="destacado">Registro de Fecha Estelar:</span> <?php echo date('Y.m.d - H:i:s'); ?></p>
+            </div>
+
+            <div class="panel-datos" style="border-left-color: #cc6699;">
+                <h3>[ Equipo de Misión ]</h3>
+                <ul class="oficiales-lista">
+                    <li><span>Bruno Calón</span></li>
+                    <li><span>Alejandro Tapia</span></li>
+                    <li><span>Santiago Mirantes</span></li>
+                </ul>
+            </div>
+
+            <div class="panel-datos" style="border-left-color: #3366ff;">
+                <h3>[ Telemetría del Núcleo ]</h3>
+                <?php
+                    $warp = rand(96, 100);
+                    $escudos = rand(90, 100);
+                    $memoria = rand(2048, 4096);
+                ?>
+                <p><span class="destacado">Estabilidad del Núcleo Warp (Servidor Apache2):</span> <span class="ok"><?php echo $warp; ?>% - Óptimo</span></p>
+                <p><span class="destacado">Armónicos de Escudos (Seguridad de Enlace):</span> <span class="ok"><?php echo $escudos; ?>% - Estables</span></p>
+                <p><span class="destacado">Asignación de Memoria Subespacial (RAM):</span> <?php echo $memoria; ?> MB Cifrados</p>
+            </div>
+
+            <div class="informe-seccion">
+                <h3>[ Registro Cronológico de Implementación ]</h3>
+                
+                <div class="paso-caja">
+                    <h4>Paso 1: Sincronización de Repositorios (apt update)</h4>
+                    <p>Se inició el protocolo actualizando el árbol de dependencias y paquetes disponibles en los servidores de la Federación mediante la ejecución de <code>apt update</code> desde la terminal de comando.</p>
+                    <img src="imagen1.png" alt="Paso 1" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja" style="border-left-color: #3366ff;">
+                    <h4>Paso 2: Instalación del Servidor Web Apache2</h4>
+                    <p>Se procedió a levantar el entorno de servicios HTTP mediante el comando <code>apt install apache2 -y</code>, el cual monta la estructura del servidor y lo deja a la escucha en el puerto subespacial 80.</p>
+                    <img src="imagen2.png" alt="Paso 2" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja">
+                    <h4>Paso 3: Integración del Entorno PHP</h4>
+                    <p>Para dotar a la consola de procesamiento lógico en tiempo real, se inyectaron las librerías del lenguaje dinámico a través de la directiva de consola <code>apt install php libapache2-mod-php -y</code>.</p>
+                    <img src="imagen3.png" alt="Paso 3" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja" style="border-left-color: #3366ff;">
+                    <h4>Paso 4: Maquetación y Nomenclatura de Archivos</h4>
+                    <p>En la estación base (Windows), se diseñó la estructura lógica en el archivo <code>index.php</code> y se definió la firma gráfica del sistema bajo el nombre estrictamente codificado de <code>logo.png</code>.</p>
+                    <img src="imagen4.png" alt="Paso 4" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja">
+                    <h4>Paso 5: Enlace e Inyección de Datos vía WinSCP</h4>
+                    <p>Estableciendo un puente de comunicación seguro SFTP/SSH con las credenciales de administración, se transfirieron los paquetes de datos locales hacia el directorio primario <code>/root</code> de la terminal Debian.</p>
+                    <img src="imagen5.png" alt="Paso 5" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja" style="border-left-color: #3366ff;">
+                    <h4>Paso 6: Verificación Táctica de Almacenamiento</h4>
+                    <p>Mediante la terminal del sistema operativo, se ejecutó un escaneo de tipo listado (<code>ls /root</code>) para certificar que ambos elementos se encontraran alojados de manera íntegra y correcta.</p>
+                    <img src="imagen6.png" alt="Paso 6" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja">
+                    <h4>Paso 7: Puesta en Producción (Directorio Público)</h4>
+                    <p>Se trasladaron los archivos directamente a los bancos activos de Apache usando comandos de clonación: <code>cp /root/index.php /var/www/html/</code> y <code>cp /root/logo.png /var/www/html/</code>.</p>
+                    <img src="imagen7.png" alt="Paso 7" class="paso-imagen">
+                </div>
+
+                <div class="paso-caja" style="border-left-color: #3366ff;">
+                    <h4>Paso 8: Inicialización Exitosa del Sistema</h4>
+                    <p>Se realizó el testeo final de enlace cargando la dirección IP del servidor en el hipervínculo del terminal cliente. El núcleo interpretó la lógica de forma óptima, concluyendo con éxito el TP.</p>
+                    <img src="imagen8.png" alt="Paso 8" class="paso-imagen">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px; padding-bottom: 30px;">
+                <img src="logo.png" alt="Insignia" style="width: 130px; opacity: 0.8;">
+                <p style="color: #4466aa; font-size: 12px; margin-top: 10px;">INGENIERÍA UP - SUB-ESPACIO DE DATOS ENCRIPTADOS</p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
